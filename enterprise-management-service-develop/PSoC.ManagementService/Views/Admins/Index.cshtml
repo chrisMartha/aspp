@@ -1,0 +1,210 @@
+﻿@model IEnumerable<PSoC.ManagementService.Services.Models.Admin>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<h2><a href="@Url.Action("Index", "Admin")">< home</a></h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastLoginDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DistrictName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchoolName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastLoginDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DistrictName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchoolName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { userId = item.UserId }, new { @class = "btn btn-primary btn-edit" }) |
+                @Html.ActionLink("Details", "Details", new { userId = item.UserId }, new { @class = "btn btn-primary btn-details" }) |
+                <button type                ="button" 
+                        class               ="btn btn-danger delete btn-delete" 
+                        data-delete-url     ="@Url.Action("Delete", "Admins", new { userId = @item.UserId })"
+                        data-toggle         ="modal" 
+                        data-target         ="#deleteModal" 
+                        data-id             ="@item.UserId" 
+                        data-username       ="@item.Username" 
+                        data-email          ="@item.AdminEmail"
+                        data-user-type      ="@item.UserType" 
+                        data-active         ="@item.Active" 
+                        data-last-login     ="@item.LastLoginDateTime"
+                        data-district-name  ="@item.DistrictName" 
+                        data-district-id    ="@item.DistrictId"
+                        data-school-name    ="@item.SchoolName" 
+                        data-school-id      ="@item.SchoolId">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("item-to-delete", "", new { @id = "item-to-delete" })
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="deleteModalLabel">Delete Admin</h4>
+                </div>
+                <div class="header-danger">
+                    Are you sure you wish to delete this admin?
+                    <button type="button" class="btn btn-primary btn-cancel" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="deleteConFirm" class="btn btn-primary btn-delete">Delete</button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UserId)
+                            </dt>
+
+                            <dd id="ddUserId">
+
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Username)
+                            </dt>
+
+                            <dd id="ddUsername">
+
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UserType)
+                            </dt>
+
+                            <dd id="ddUserType">
+
+                            </dd>
+
+                            <dt>
+                                Status
+                            </dt>
+
+                            <dd id="ddActive" class="text-lowercase">
+
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.LastLoginDateTime)
+                            </dt>
+
+                            <dd id="ddLastLoginDateTime">
+
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DistrictName)
+                            </dt>
+
+                            <dd id="ddDistrictName">
+
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DistrictId)
+                            </dt>
+
+                            <dd id="ddDistrictId">
+
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.SchoolName)
+                            </dt>
+
+                            <dd id="ddSchoolName">
+
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.SchoolId)
+                            </dt>
+
+                            <dd id="ddSchoolId">
+
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.AdminEmail)
+                            </dt>
+
+                            <dd id="ddAdminEmail">
+
+                            </dd>
+
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteConfirmModalLabel">Confirmation</h4>
+                </div>               
+                <div class="modal-body" id="deleteConfirmBody">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="deleteUndo" class="btn btn-primary btn-undo" data-dismiss="modal">Undo</button>
+                    <button type="button" id="deleteOk" class="btn btn-primary btn-ok">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/scripts/deleteConfirm.js")
+}

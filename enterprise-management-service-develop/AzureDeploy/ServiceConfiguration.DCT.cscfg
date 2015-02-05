@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="AzureDeploy" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2014-06.2.4">
+  <Role name="PSoC.ManagementService">
+    <Instances count="2" />
+    <ConfigurationSettings>
+      <Setting name="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=pemsdct;AccountKey=JIXEgMpjCrHrNq2iyYqOlMycYemCqxBr2jkvRRP69CHNrw+Z+H1yBiXjC+aNc3b269hAiHVeKmx8sgKMpGraDg==" />
+      <Setting name="StorageTableName" value="devices" />
+      <Setting name="CustomerTableName" value="customers" />
+      <Setting name="EncryptionCertificateThumbprint" value="C7206963BDEAEC1CF682F5AB74C8C1B874364526" />
+      <Setting name="AuthenticationBypassEnabled" value="false" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="jenkins" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBlQYJKoZIhvcNAQcDoIIBhjCCAYICAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEE/cR4zRoYWQR3xW5K3nWyMwDQYJKoZIhvcNAQEBBQAEggEAM5lGQK43SPdMn7rcLOHKXQY19XGCxPh21uKz3EdDuDbFQkAUXbm/nzl3dIPwly18PhYvLwSPbvz3GkNg64dLRXllGBJ7DV+2G+j/XI+esX5PCaTDqA6qrrgfyYoSvNFxUMwy5spJS+mCgzKfoMcu2bpXPCuIpHaiRyWAvNsWXX6kSvj4ZV0KkLqj5Bchs9fXRYoEzq1FBr6Ch9f8Pri52Y7WJmKXBz5s2/DZGlEoVpf8gGVC7a0Q0Fe2ECqoBZbYxX6tew/CUE6Ai9wiKMDf5CqJXAX/8cYr48AZVNiCj9qvOr6Qagz+6q0tKN88O/tEaviscST0kuW5CObj+ZVGYzArBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECJsobTN5EjF6gAgsdQseQanOdQ==" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2015-12-10T23:59:59.0000000-05:00" />
+      <Setting name="LogAll" value="false" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="MySSLCert" thumbprint="C7206963BDEAEC1CF682F5AB74C8C1B874364526" thumbprintAlgorithm="sha1" />
+      <Certificate name="MyEncryptCert" thumbprint="C7206963BDEAEC1CF682F5AB74C8C1B874364526" thumbprintAlgorithm="sha1" />
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="B36324641EFFACB6918D49AE881F49AB6247C37F" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+  <Role name="PSoC.ManagementService.LicenseTimer">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=pemsdct;AccountKey=JIXEgMpjCrHrNq2iyYqOlMycYemCqxBr2jkvRRP69CHNrw+Z+H1yBiXjC+aNc3b269hAiHVeKmx8sgKMpGraDg==" />
+      <Setting name="CustomerTableName" value="customers" />
+      <Setting name="LicenseCleanupInterval" value="300" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="jenkins" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBlQYJKoZIhvcNAQcDoIIBhjCCAYICAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEE/cR4zRoYWQR3xW5K3nWyMwDQYJKoZIhvcNAQEBBQAEggEAM5lGQK43SPdMn7rcLOHKXQY19XGCxPh21uKz3EdDuDbFQkAUXbm/nzl3dIPwly18PhYvLwSPbvz3GkNg64dLRXllGBJ7DV+2G+j/XI+esX5PCaTDqA6qrrgfyYoSvNFxUMwy5spJS+mCgzKfoMcu2bpXPCuIpHaiRyWAvNsWXX6kSvj4ZV0KkLqj5Bchs9fXRYoEzq1FBr6Ch9f8Pri52Y7WJmKXBz5s2/DZGlEoVpf8gGVC7a0Q0Fe2ECqoBZbYxX6tew/CUE6Ai9wiKMDf5CqJXAX/8cYr48AZVNiCj9qvOr6Qagz+6q0tKN88O/tEaviscST0kuW5CObj+ZVGYzArBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECJsobTN5EjF6gAgsdQseQanOdQ==" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2015-12-10T23:59:59.0000000-05:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+      <Setting name="LogAll" value="false" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="B36324641EFFACB6918D49AE881F49AB6247C37F" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

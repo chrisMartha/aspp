@@ -1,0 +1,154 @@
+﻿@model PSoC.ManagementService.Services.Models.Admin
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Admin</h4>
+        <h2><a href="@Url.Action("Index", "Admin")">< home</a></h2>
+        <hr />        
+    @if (ViewData.ModelState.Any(x => string.IsNullOrEmpty(x.Key)))
+    {
+        <div class="alert alert-danger" role="alert">
+            <span class="sr-only">Error:</span>
+            @Html.ValidationSummary(true)
+        </div>
+    }
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.UserId, new { @class = "form-control admin-form", @maxlength = 50, @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Username, new { @class = "form-control admin-form", @maxlength = 50 })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AdminType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @{string globalId = ViewData.TemplateInfo.GetFullHtmlFieldId("radioGlobal");}
+                    @if (Model != null && Model.AdminType == PSoC.ManagementService.Core.AdminType.GlobalAdmin)
+                    {
+                        @Html.RadioButtonFor(x => x.AdminType, (int)PSoC.ManagementService.Core.AdminType.GlobalAdmin, new { @id = globalId, @class = "control-radio radioGlobal", @checked = "checked" });
+                    }
+                    else
+                    {
+                        @Html.RadioButtonFor(x => x.AdminType, (int)PSoC.ManagementService.Core.AdminType.GlobalAdmin, new { @id = globalId, @class = "control-radio radioGlobal" });
+                    }
+                    @Html.LabelFor(x => x.AdminType, "Global Admin", new { @for = globalId, @class = "control-label" })
+                    @Html.ValidationMessageFor(x => x.AdminType, "", new { @class = "text-danger" })
+                </div>
+
+                <div>
+                    @{string districtId = ViewData.TemplateInfo.GetFullHtmlFieldId("radioDistrict");}
+                    @if (Model != null && Model.AdminType == PSoC.ManagementService.Core.AdminType.DistrictAdmin)
+                    {
+                        @Html.RadioButtonFor(x => x.AdminType, (int)PSoC.ManagementService.Core.AdminType.DistrictAdmin, new { @id = districtId, @class = "control-radio radioDistrict", @checked = "checked" });
+                        @Html.LabelFor(x => x.AdminType, "District Admin", new { @for = districtId, @class = "control-label" })
+                        <div>
+                            @Html.DropDownListFor(x => x.DistrictId, PSoC.ManagementService.Helper.Admins.AvailableDistricts, new {@class = "control-select selectDistrict", @placeholder = "select district"})
+                            @Html.ValidationMessageFor(x => x.DistrictId, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.RadioButtonFor(x => x.AdminType, (int)PSoC.ManagementService.Core.AdminType.DistrictAdmin, new { @id = districtId, @class = "control-radio radioDistrict" });
+                        @Html.LabelFor(x => x.AdminType, "District Admin", new { @for = districtId, @class = "control-label" })
+                        <div>
+                            @Html.DropDownListFor(x => x.DistrictId, PSoC.ManagementService.Helper.Admins.AvailableDistricts, new {@disabled = true, @class = "control-select selectDistrict", @placeholder = "select district"})
+                            @Html.ValidationMessageFor(x => x.DistrictId, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                </div>
+
+                <div>
+                    @{string schoolId = ViewData.TemplateInfo.GetFullHtmlFieldId("radioSchool");}
+                    @if (Model != null && Model.AdminType == PSoC.ManagementService.Core.AdminType.SchoolAdmin)
+                    {
+                        @Html.RadioButtonFor(x => x.AdminType, (int)PSoC.ManagementService.Core.AdminType.SchoolAdmin, new { @id = schoolId, @class = "control-radio radioSchool", @checked = "checked" });
+                        @Html.LabelFor(x => x.AdminType, "School Admin", new { @for = schoolId, @class = "control-label" })
+                        <div>
+                            @Html.DropDownListFor(x => x.SchoolId, PSoC.ManagementService.Helper.Admins.AvailableSchools, new {@class = "control-select selectSchool", @placeholder = "select school"})
+                            @Html.ValidationMessageFor(x => x.SchoolId, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.RadioButtonFor(x => x.AdminType, (int)PSoC.ManagementService.Core.AdminType.SchoolAdmin, new { @id = schoolId, @class = "control-radio radioSchool" });
+                        @Html.LabelFor(x => x.AdminType, "School Admin", new { @for = schoolId, @class = "control-label" })
+                        <div>
+                            @Html.DropDownListFor(x => x.SchoolId, PSoC.ManagementService.Helper.Admins.AvailableSchools, new {@disabled = true, @class = "control-select selectSchool", @placeholder = "select school"})
+                            @Html.ValidationMessageFor(x => x.SchoolId, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(model => model.Active, new { @class ="activeToggle", @data_toggle = "toggle", @data_on = "YES", @data_off = "NO", @data_onstyle = "success", @data_offstyle = "danger", @data_style="ios" })                    
+                    @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AdminEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AdminEmail, htmlAttributes: new { @class = "form-control admin-form", @maxlength = 50 })
+                @Html.ValidationMessageFor(model => model.AdminEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastLoginDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.LastLoginDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.LastLoginDateTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a href="@Url.Action("Index", "Admin")" class="cancel">cancel</a>
+                <input type="submit" value="Edit Admin" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/scripts/adminform.js")  
+    @Scripts.Render("~/scripts/bootstrap-toggle.js")  
+}
+
+@section styles {
+    @Styles.Render("~/Content/bootstrap-toggle.css")
+}

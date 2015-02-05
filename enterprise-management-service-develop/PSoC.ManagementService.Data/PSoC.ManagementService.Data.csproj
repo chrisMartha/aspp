@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Dev</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A2FD6099-0A29-4B60-BC76-8F51A700E709}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PSoC.ManagementService.Data</RootNamespace>
+    <AssemblyName>PSoC.ManagementService.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Dev\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'local dev|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\local dev\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\QA\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Load|AnyCPU'">
+    <OutputPath>bin\Load\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DCT|AnyCPU'">
+    <OutputPath>bin\DCT\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataMapper\AccessPointDataMapper.cs" />
+    <Compile Include="DataMapper\ClassroomDataMapper.cs" />
+    <Compile Include="DataMapper\CourseDataMapper.cs" />
+    <Compile Include="DataMapper\DeviceDataMapper.cs" />
+    <Compile Include="DataMapper\DeviceInstalledCourseMapper.cs" />
+    <Compile Include="DataMapper\DistrictDataMapper.cs" />
+    <Compile Include="DataMapper\AdminDataMapper.cs" />
+    <Compile Include="DataMapper\LicenseDataMapper.cs" />
+    <Compile Include="DataMapper\LicenseRequestDataMapper.cs" />
+    <Compile Include="DataMapper\SchoolDataMapper.cs" />
+    <Compile Include="DataMapper\UserDataMapper.cs" />
+    <Compile Include="Helpers\DataAccessHelper.cs" />
+    <Compile Include="Helpers\ExpressionTranslator.cs" />
+    <Compile Include="Interfaces\IAccessPointRepository.cs" />
+    <Compile Include="Interfaces\IAccessPointDeviceStatusRepository.cs" />
+    <Compile Include="Interfaces\IAdminRepository.cs" />
+    <Compile Include="Interfaces\IClassroomRepository.cs" />
+    <Compile Include="Interfaces\ICourseRepository.cs" />
+    <Compile Include="Interfaces\IDataMapper.cs" />
+    <Compile Include="Interfaces\IDataRepository.cs" />
+    <Compile Include="Interfaces\IDeviceInstalledCourseRepository.cs" />
+    <Compile Include="Interfaces\IDeviceRepository.cs" />
+    <Compile Include="Interfaces\IDistrictRepository.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\ILicenseRepository.cs" />
+    <Compile Include="Interfaces\ILicenseRequestRepository.cs" />
+    <Compile Include="Interfaces\IQueryFactory.cs" />
+    <Compile Include="Interfaces\ISchoolRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Models\AccessPointDto.cs" />
+    <Compile Include="Models\AdminDto.cs" />
+    <Compile Include="Models\ClassroomDto.cs" />
+    <Compile Include="Models\CourseDto.cs" />
+    <Compile Include="Models\DeviceDto.cs" />
+    <Compile Include="Models\DeviceInstalledCourseDto.cs" />
+    <Compile Include="Models\DistrictDto.cs" />
+    <Compile Include="Models\LicenseDto.cs" />
+    <Compile Include="Models\LicenseRequestDto.cs" />
+    <Compile Include="Models\SchoolDto.cs" />
+    <Compile Include="Models\UserDto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryFactory\AccessPointQuery.cs" />
+    <Compile Include="QueryFactory\ClassroomQuery.cs" />
+    <Compile Include="QueryFactory\CourseQuery.cs" />
+    <Compile Include="QueryFactory\DeviceInstalledCourseQuery.cs" />
+    <Compile Include="QueryFactory\DeviceQuery.cs" />
+    <Compile Include="QueryFactory\DistrictQuery.cs" />
+    <Compile Include="QueryFactory\AdminQuery.cs" />
+    <Compile Include="QueryFactory\LicenseQuery.cs" />
+    <Compile Include="QueryFactory\LicenseRequestQuery.cs" />
+    <Compile Include="QueryFactory\SchoolQuery.cs" />
+    <Compile Include="QueryFactory\UserQuery.cs" />
+    <Compile Include="Repositories\AccessPointRepository.cs" />
+    <Compile Include="Repositories\AdminRepository.cs" />
+    <Compile Include="Repositories\ClassroomRepository.cs" />
+    <Compile Include="Repositories\CourseRepository.cs" />
+    <Compile Include="Repositories\AccessPointDeviceStatusRepository.cs" />
+    <Compile Include="Repositories\DeviceInstalledCourseRepository.cs" />
+    <Compile Include="Repositories\DeviceRepository.cs" />
+    <Compile Include="Repositories\DistrictRepository.cs" />
+    <Compile Include="Repositories\LicenseRepository.cs" />
+    <Compile Include="Repositories\LicenseRequestRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\SchoolRepository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Types\QueryObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PSoC.ManagementService.Core\PSoC.ManagementService.Core.csproj">
+      <Project>{fa69188c-e21b-4c22-ab9d-14360933e7e8}</Project>
+      <Name>PSoC.ManagementService.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PSoC.ManagementService.Security\PSoC.ManagementService.Security.csproj">
+      <Project>{1d8748d9-4b0a-4195-b86a-48d9191b87dc}</Project>
+      <Name>PSoC.ManagementService.Security</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,254 @@
+﻿<div id="table-container" class="container">
+
+    <div class="pull-right" id="utilityOptions">
+        @if (User.IsInRole("GlobalAdmin"))
+        {
+            <a class="btn btn-primary" href="@Url.Action("Index", "Admins")">Admins</a>
+        }
+        @if ((User.IsInRole("GlobalAdmin")) || (User.IsInRole("DistrictAdmin")))
+        {
+            <a class="btn btn-primary" href="@Url.Action("district", "settings")">District Settings</a>
+        }
+        @if ((User.IsInRole("GlobalAdmin")) || (User.IsInRole("DistrictAdmin")) || (User.IsInRole("SchoolAdmin")))
+        {
+            <a class="btn btn-primary" href="@Url.Action("accesspoint", "settings")">Access Point Settings</a>
+        }
+        <a class="btn btn-primary" href="@Url.Action("Logout", "Account")">Log Out</a>
+    </div>
+
+    <table id="devices" class="table table-striped table-hover">
+        
+        <thead>
+            <tr data-bind="foreach: headers">
+                <th data-bind="insertHeader: title, click: isSortable ? $parent.sort : null">
+                    <i data-bind="attr: { class: isSortable ? iconType : '' }"></i>
+                </th>
+            </tr>
+        </thead>
+        
+        <tbody data-bind="foreach: currentPage">
+            <tr>
+                @*<td data-bind="text: DeviceName" />*@
+                <td data-bind="text: EnvironmentId" />
+                @*<td data-bind="text: Username" />*@
+                <td data-bind="text: LocationName" />
+                <td data-bind="text: WifiBSSID" />
+                <td data-bind="text: WifiSSID" />
+                <td>
+                    <button class="btn btn-primary btn-sm" role="button"
+                        data-bind="click: $parent.deleteLicense, visible: CanDownloadLearningContent">
+                    Revoke
+                </button>
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-sm" role="button"
+                            data-bind="click: $parent.deleteDevice">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <span>Number of items per page: </span>
+                    <select id="pageSizeSelector" data-bind="value: pageSize" class="input-sm">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </td>
+                <td colspan="7" align="right">
+
+                    <ul class="pager">
+                        <li><a href="#" data-bind="click: previousPage" class="btn btn-primary" ><span class="fa fa-angle-left"></span> Previous</a></li>
+                        <li><span>Page <span data-bind="text: currentPageIndex() + 1"></span> of <span  data-bind="    text: totalPages()"></span></span></li>
+                        <li><a href="#" data-bind="click: nextPage" class="btn btn-primary">Next <span class="fa fa-angle-right"></span></a></li>
+                    </ul>
+                
+                </td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+    <footer class="row">
+        <p>Copyright © @DateTime.Now.Year Pearson Education, Inc. All Rights Reserved</p>
+        <p class="footer-links">
+            <a href="http://www.pearsoned.com/privacy-policy/">Privacy Statement</a> | 
+            <a href="http://www.pearsoned.com/terms-of-use/">Terms of Use</a>
+
+        </p>
+    </footer>
+</div>
+
+
+
+
+
+@section Scripts
+ {
+    <script type="text/javascript">
+        ko.bindingHandlers.insertHeader = {
+            init: function (element, valueAccessor) {
+                var span = document.createElement("span"),
+                    firstChild = element.firstChild;
+
+                element.insertBefore(span, firstChild);
+                ko.applyBindingsToNode(span, { text: valueAccessor() });
+            }
+        };
+
+        function ViewModel() {
+            var self = this;
+
+            self.pageSize = ko.observable(10);
+            self.currentPageIndex = ko.observable(0);
+            self.devices = ko.mapping.fromJS([]);
+
+            self.headers = [
+                //{ title: 'Device', sortPropertyName: 'DeviceName', asc: true, isSortable: true, iconType: ko.observable('fa fa-sort') },
+                { title: 'Environment', sortPropertyName: 'EnvironmentId', isSortable: true, asc: true, iconType: ko.observable('fa fa-sort') },
+                //{ title: 'User', sortPropertyName: 'Username', isSortable: true, asc: true, iconType: ko.observable('fa fa-sort') },
+                { title: 'Location', sortPropertyName: 'LocationName', isSortable: true, asc: true, iconType: ko.observable('fa fa-sort') },
+                { title: 'WifiBSSID', sortPropertyName: 'WifiBSSID', isSortable: true, asc: true, iconType: ko.observable('fa fa-sort') },
+                { title: 'WifiSSID', sortPropertyName: 'WifiSSID', isSortable: true, asc: true, iconType: ko.observable('fa fa-sort') },
+                { title: '', isSortable: false },
+                { title: '', isSortable: false }
+            ];
+
+            //Since we removed device name this has to be set to 0
+            self.activeSort = self.headers[0]; //set the default sort
+            self.headers[0].iconType('fa fa-sort-asc');
+
+            //self.activeSort = self.headers[1]; //set the default sort
+            //self.headers[1].iconType('fa fa-sort-asc');
+
+            self.totalPages = ko.observable(0);
+
+            self.currentPage = ko.computed(function () {
+                var tmpPageSize = parseInt(self.pageSize(), 10);
+                self.totalPages(Math.ceil(self.devices().length / tmpPageSize));
+
+                //Check if the current page actaully exists. Decreased page size but on a forward page.
+                if (self.currentPageIndex() >= self.totalPages()) {
+                    self.currentPageIndex(0);
+                }
+
+                var startIndex = tmpPageSize * self.currentPageIndex();
+                var endIndex = startIndex + tmpPageSize;
+                var items = self.devices.slice(startIndex, endIndex);
+                return items;
+            });
+
+            self.nextPage = function () {
+                if (((self.currentPageIndex() + 1) * self.pageSize()) < self.devices().length) {
+                    self.currentPageIndex(self.currentPageIndex() + 1);
+                }
+                else {
+                    self.currentPageIndex(0);
+                }
+            };
+
+            self.previousPage = function () {
+                if (self.currentPageIndex() > 0) {
+                    self.currentPageIndex(self.currentPageIndex() - 1);
+                }
+                else {
+                    self.currentPageIndex((self.ceil(self.devices().length / self.pageSize())) - 1);
+                }
+            };
+
+            self.sort = function (header, event) {
+                if (header.isSortable) {
+                    if (self.activeSort === header) {
+                        header.asc = !header.asc; //...toggle the direction of the sort
+                    } else {
+                        self.activeSort.iconType('fa fa-sort'); //set old one back
+                        self.activeSort = header; //first click, remember new one
+                    }
+
+                    var prop = self.activeSort.sortPropertyName;
+                    var ascSort = function (a, b) {
+                        var propValueA = a[prop]();
+                        var propValueB = b[prop]();
+
+                        if (prop === "CanDownloadLearningContent") {
+                            propValueA = propValueA ? 'Yes' : 'No';
+                            propValueB = propValueB ? 'Yes' : 'No';
+                        }
+
+                        var va = (propValueA === null) ? "" : "" + propValueA;
+                        var vb = (propValueB === null) ? "" : "" + propValueB;
+                        return va.toLowerCase() > vb.toLowerCase() ? 1 : -1;
+                    };
+                    var descSort = function (a, b) {
+                        var propValueA = a[prop]();
+                        var propValueB = b[prop]();
+
+                        if (prop === "CanDownloadLearningContent") {
+                            propValueA = propValueA ? 'Yes' : 'No';
+                            propValueB = propValueB ? 'Yes' : 'No';
+                        }
+
+                        var va = (propValueA === null) ? "" : "" + propValueA;
+                        var vb = (propValueB === null) ? "" : "" + propValueB;
+                        return va.toLowerCase() < vb.toLowerCase() ? 1 : -1;
+                    };
+
+                    var sortFunc;
+                    if (self.activeSort.asc) {
+                        sortFunc = ascSort;
+                        header.iconType('fa fa-sort-asc');
+                    }
+                    else {
+                        sortFunc = descSort;
+                        header.iconType('fa fa-sort-desc');
+                    }
+                    self.devices.sort(sortFunc);
+                }
+            };
+
+            self.loadDevices = function () {
+                $.ajax({
+                    url: "/api/v1/devices/"
+                }).success(function (data) {
+                    ko.mapping.fromJS(data, self.devices);
+
+                });
+            };
+
+            self.deleteLicense = function (device) {
+                device.CanDownloadLearningContent(false);
+                device.DownloadLicenseRequested(false);
+                $.ajax({
+                    type: "PUT",
+                    url: "/api/v1/devices/" + device.DeviceId(),
+                    data: ko.mapping.toJSON(device),
+                    contentType: "application/json"
+                }).success(function (data) {
+                    self.loadDevices();
+                });
+            };
+
+            self.deleteDevice = function (device) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/api/v1/devices/" + device.DeviceId(),
+                    data: ko.mapping.toJSON(device),
+                    contentType: "application/json"
+                }).success(function (data) {
+                    self.loadDevices();
+                });
+            };
+        }
+
+        $(function () {
+            var viewModel = new ViewModel();
+            viewModel.loadDevices();
+            ko.applyBindings(viewModel);
+        });
+    </script>
+}

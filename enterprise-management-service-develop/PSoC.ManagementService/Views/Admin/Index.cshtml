@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = ": Manage Devices";
+}
+
+@Styles.Render("~/Content/css/dashboard")
+
+<style type="text/css">
+
+</style>
+
+<form id="deviceStatusForm" method="post" action="javascript:;" accept-charset="utf-8">
+    <div class="dashboard-container">
+        <div class="controls-top"></div>
+        <div class="data">
+            <table id="statusTable" class="display">
+                <thead>
+                    <tr>
+                        <th colspan="1">&nbsp;</th>
+                        <th colspan="1">LAST UPDATE</th>
+                        <th colspan="2">&nbsp;</th>
+                        <th colspan="4">DEVICE</th>
+                        <th colspan="2">USER</th>
+                        <th colspan="2">&nbsp;</th>
+                        <th colspan="2">WIFI</th>
+                        <th colspan="3">&nbsp;</th>
+                    </tr>
+                    <tr>
+                        <th>Date Created</th>
+                        <th>Date/Time</th>
+                        <th>District Name</th>
+                        <th>School Name</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>OS Version</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Configured Grades</th>
+                        <th>Location Name</th>
+                        <th>BSSID</th>
+                        <th>SSID</th>
+                        <th>Request Type</th>
+                        <th>Items In Download</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="controls-bottom"></div>
+    </div>
+    <div id="expire-dialog" title="Confirmation" style="display:none;">
+        <p>Are you sure you want to expire this License?</p>
+    </div>
+</form>
+
+@section scripts
+{
+    <script>
+        var userType = '@(ViewBag.UserType)';
+    </script>
+    @Scripts.Render("~/bundles/dashboard")
+}
+

@@ -1,0 +1,2 @@
+GET http://psoc-management-service-dev.cloudapp.net/api/v1/devices
+

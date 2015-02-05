@@ -1,0 +1,52 @@
+﻿@model PSoC.ManagementService.Models.SettingsViewModel
+
+@{
+    ViewBag.Title = "Settings";
+}
+<section id="settings-container" class="container">
+
+    <div class="pull-right" id="utilityOptions">
+        <a class="btn btn-primary" href="@Url.Action("Index", "Home")">Back</a>
+        <a class="btn btn-primary" href="@Url.Action("Logout", "Account")">Log Out</a>
+    </div>
+
+    <h2>Settings</h2>
+
+    @using (Html.BeginForm("Settings", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DownloadLicenseTimeout, "Download License Timeout", new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-6 chzn-container">
+                @Html.TextBoxFor(model => model.DownloadLicenseTimeout, new { @class = "form-control persistable readonly settings" })
+                @Html.ValidationMessageFor(model => model.DownloadLicenseTimeout)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxDownloadsPerClass, "Max Downloads Per Access Point", new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-6 chzn-container">
+                @Html.TextBoxFor(model => model.MaxDownloadsPerClass, new { @class = "form-control persistable readonly settings" })
+                @Html.ValidationMessageFor(model => model.MaxDownloadsPerClass)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxDownloadsPerCustomer, "Max Downloads Per Customer", new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-6 chzn-container">
+                @Html.TextBoxFor(model => model.MaxDownloadsPerCustomer, new { @class = "form-control persistable readonly settings" })
+                @Html.ValidationMessageFor(model => model.MaxDownloadsPerCustomer)
+            </div>
+        </div>
+    
+        <div class="form-group" style="margin-top:10px;">
+            <div class="col-sm-offset-2 col-sm-10 col-lg-offset-2 col-lg-10">
+                 <button type="submit" class="btn btn-primary btn-lg">Save</button>
+            </div>
+        </div>
+
+    }
+
+</section>

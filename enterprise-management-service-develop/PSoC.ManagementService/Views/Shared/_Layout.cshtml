@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSoC EMS @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!--[if IE]>
+	    <link rel="stylesheet" type="text/css" href="~/Content/ie.css" />
+    <![endif]-->
+    @RenderSection("styles", required: false)
+</head>
+<body id="@(ViewBag.BodyClass)">
+
+    <div class="navbar" role="navigation">
+        <div class="logoContainer">
+            <span id="logo"></span><p class="navbar-text">Pearson Enterprise Management</p>
+        </div>
+        @if (ViewBag.IsAuthenticated != null && ViewBag.IsAuthenticated)
+        {
+            <div class="pull-right" id="utilityOptions">
+                @if (User.IsInRole("GlobalAdmin"))
+                {
+                    <a class="btn btn-primary" href="@Url.Action("Index", "Admins")">Admins</a>
+                }
+                @if ((User.IsInRole("GlobalAdmin")) || (User.IsInRole("DistrictAdmin")))
+                {
+                    <a class="btn btn-primary" href="@Url.Action("district", "settings")">District Settings</a>
+                }
+                @if ((User.IsInRole("GlobalAdmin")) || (User.IsInRole("DistrictAdmin")) || (User.IsInRole("SchoolAdmin")))
+                {
+                    <a class="btn btn-primary" href="@Url.Action("accesspoint", "settings")">Access Point Settings</a>
+                }
+                <span id="username">@ViewBag.Username</span>
+                <a id="logoutLink" href="@Url.Action("Logout", "Account")">
+                    Logout
+                </a>
+            </div>
+        }
+    </div>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

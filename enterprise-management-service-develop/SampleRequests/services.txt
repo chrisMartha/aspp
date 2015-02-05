@@ -1,0 +1,1 @@
+psoc-management-service-dev.cloudapp.net

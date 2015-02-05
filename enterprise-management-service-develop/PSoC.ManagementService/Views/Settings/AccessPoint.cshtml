@@ -1,0 +1,147 @@
+﻿@model PSoC.ManagementService.Models.AccessPointSettingsViewModel
+
+@{
+    ViewBag.Title = "Access Point Settings";
+    Html.EnableClientValidation(true);
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<style type="text/css">
+    #settings-container {
+        background: #cccccc;
+        height: 550px;
+        padding: 10px 15px;
+    }
+
+    #settings-body {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #settings-control-panel {
+        width: 300px;
+        padding-top: 7px;
+    }
+
+    #settings-select-list {
+        float: left;
+        clear: left;
+        height: 400px;
+        overflow-y: auto;
+        width: 266px;   
+    }
+
+        #settings-select-list div {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 2px solid #dedede;
+        }
+
+            #settings-select-list div:nth-child(odd) {
+                background: #ffffff;
+            }
+
+            #settings-select-list div:nth-child(even) {
+                background: #fafafa;
+            }
+
+    .settings-dim {
+        color: gray;
+    }
+
+    #settings-selected {
+        font-weight: bold;
+    }
+
+    #settings-form {
+        float: right;
+        width: 700px;
+        vertical-align: top;
+    }
+</style>
+
+
+<section id="settings-container" class="container">
+
+    <div class="pull-right" id="utilityOptions">
+        <a class="btn btn-primary" href="@Url.Action("Index", "Admin")">Back</a>
+        <a class="btn btn-primary" href="@Url.Action("Logout", "Account")">Log Out</a>
+    </div>
+
+    <div id="settings-body">
+        <h2><a href="@Url.Action("Index", "Admin")">< home</a></h2>
+        <div id="settings-control-panel">
+            @if ((User.IsInRole("GlobalAdmin")) || (User.IsInRole("DistrictAdmin")))
+            {
+                @Html.ActionLink("District", "district", null, new { @class = "tab tab-active" })
+            }
+            <div class="tab tab-inactive">Access Points</div>
+            <div id="settings-select-list">
+                @if (Model.SelectedAccessPoint == null)
+                {
+                <div id="settings-selected">
+                    No matching access point is available.
+                </div>
+                }
+                else
+                {
+                    foreach (var ap in Model.AccessPoints)
+                    {
+                        if (ap.WifiBSSId != Model.SelectedAccessPoint.WifiBSSId)
+                        {
+                <div class="settings-dim">@Html.ActionLink(ap.WifiBSSId, "accesspoint", new { wifiBSSId = ap.WifiBSSId })</div>
+                        }
+                        else
+                        {
+                <div class="settings-selected">@ap.WifiBSSId &gt;</div>
+                        }
+                    }
+                }
+
+            </div>
+        </div>
+        @if (Model.SelectedAccessPoint != null)
+        {
+            <div id="settings-form">
+                <h2>Settings</h2>
+                @using (Html.BeginForm("accesspoint", "settings", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.WifiBSSId)
+
+                <div class="form-group">
+                    <div class="col-sm-6 chzn-container">
+                        @Html.LabelFor(m => m.AccessPointExpiryTimeSeconds)
+                        @Html.TextBoxFor(m => m.AccessPointExpiryTimeSeconds, new { @class = "form-control persistable readonly settings" })
+                        @Html.ValidationMessageFor(m => m.AccessPointExpiryTimeSeconds)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-6 chzn-container">
+                        @Html.LabelFor(m => m.AccessPointMaxDownloadLicenses)
+                        @Html.TextBoxFor(m => m.AccessPointMaxDownloadLicenses, new { @class = "form-control persistable readonly settings" })
+                        @Html.ValidationMessageFor(m => m.AccessPointMaxDownloadLicenses)
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <div class="col-sm-offset-2 col-sm-10 col-lg-offset-2 col-lg-10">
+                        <button type="reset" class="btn btn-reset btn-link">reset</button>
+                        <button type="submit" class="btn btn-default btn-save">save</button>
+                    </div>
+                </div>
+                @*<div><a href="#">revert to default settings</a></div>*@
+                <div>@Html.DisplayFor(m => m.Message)</div>
+
+                <div>
+                    @Html.ValidationSummary(true)
+                </div>
+                }
+            </div>
+        }
+    </div>
+</section>

@@ -1,0 +1,99 @@
+﻿@model PSoC.ManagementService.Services.Models.Admin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Admin</h4>
+    <h2><a href="@Url.Action("Index", "Admin")">< home</a></h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserType)
+        </dd>
+
+        <dt>
+            Status
+        </dt>
+
+        <dd class="@(Model.Active ? "field-success" : "field-danger")">
+            @(Model.Active ? "active" : "inactive")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastLoginDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastLoginDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DistrictName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DistrictName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DistrictId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DistrictId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SchoolName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchoolName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SchoolId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchoolId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { userId = Model.UserId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

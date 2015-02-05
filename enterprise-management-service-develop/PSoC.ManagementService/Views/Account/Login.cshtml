@@ -1,0 +1,56 @@
+﻿@model PSoC.ManagementService.Models.LoginModel
+
+<section id="login-container" class="container">
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "loginForm" }))
+    {
+        @Html.AntiForgeryToken()
+          
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+
+            <div class="form-group has-error">
+                @Html.ValidationMessage("LogOnError")
+            </div>
+
+            <div class="form-group login-text-input">
+                @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Username" })
+                @Html.ValidationMessageFor(model => model.Username)
+            </div>
+
+            <div class="form-group">
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password" })
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+
+            <div class="form-group login-submit">
+                <input type="submit" value="Log in" class="btn btn-default btnLogin" />
+            </div>
+        </div>
+    }
+
+    <footer>
+        <p>Copyright © @DateTime.Now.Year Pearson Education, Inc. All Rights Reserved</p>
+        <p class="footer-links">
+            <a href="http://www.pearsoned.com/privacy-policy/">Privacy Statement</a> | 
+            <a href="http://www.pearsoned.com/terms-of-use/">Terms of Use</a>
+        </p>
+    </footer>
+</section>
+
+
+@section Scripts
+ {
+    <script src="~/Scripts/chosen.jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($("select.form-control").hasClass("input-validation-error")) {
+                $(".chosen-container .chosen-single").css({ "border-width": "2px", "border-color": "#18788e" });
+            }
+
+            if ($(".form-control[type='text']").hasClass("input-validation-error") && $(".form-control[type='password']").hasClass("input-validation-error")) {
+                $(".form-control[type='text']").css("border-bottom-width", "1px");
+                $(".form-control[type='password']").css("border-top-width", "1px");
+            }
+        });
+    </script>
+}

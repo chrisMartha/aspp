@@ -1,0 +1,47 @@
+PUT http://localhost:81/api/v1/devices/e23a25e1-05e9-4a9b-9cc2-45019ac543e5
+Content-Type: application/json
+
+{
+  "EnvironmentId": "ccsocdct",
+  "AppId": "PSoC.2-12",
+  "AppVersion": "1.4",
+  "DeviceType": "iPad Mini Retina",
+  "DeviceOSVersion": "7.1",
+  "UserId": "6cdc5d11-bc1e-4a48-9219-08c66d4b97d1",
+  "UserType": "student",
+  "LocationId": "de692f4f-d71f-4b4a-9cc5-f368e8a38893",
+  "LocationName": "Obama Elementary",
+  "ContentLastUpdatedAt": "1",
+  "FreeSpaceSize": 987654321,
+  "ContentSize": 123456,
+  "CanDownloadLearningContent": false,
+  "ConfiguredGrades": [3, 4, 5],
+  "ConfiguredUnitCount": 2,
+  "LearningContentInstalled": [
+    {
+      "Grade" : 3,
+      "Subject" : "math",
+      "LearningResourceId" : "ccf8ac2a-ab12-4140-9726-9ec0867fd55f",
+      "PortionInstalled" : 0.5
+    }
+  ],
+  "LearningContentQueued": 
+  [
+    {
+      "Type": "lesson",
+      "Grade": "3",
+      "Subject": "ela",
+      "Unit": 2,
+      "Number": 2,
+      "LearningResourceId": "d17938d9-4da2-4879-89f4-c92b99d8b0c4"
+    }
+  ],
+  "LearningContentDownloaded" : 
+  {
+    "ccf8ac2a-ab12-4140-9726-9ec0867fd55f" : 0.5
+  },
+  "LearningContentDownloading" : 
+  [
+    "d17938d9-4da2-4879-89f4-c92b99d8b0c4"
+  ]
+}

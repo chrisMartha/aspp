@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PublicConfig xmlns="http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration">
+  <WadCfg>
+    <DiagnosticMonitorConfiguration overallQuotaInMB="4096">
+      <DiagnosticInfrastructureLogs scheduledTransferLogLevelFilter="Error"/>
+      <Logs scheduledTransferPeriod="PT1M" scheduledTransferLogLevelFilter="Error" />
+      <Directories scheduledTransferPeriod="PT1M">
+        <IISLogs containerName ="wad-iis-logfiles" />
+        <FailedRequestLogs containerName ="wad-failedrequestlogs" />
+      </Directories>
+      <WindowsEventLog scheduledTransferPeriod="PT1M" >
+        <DataSource name="Application!*" />
+      </WindowsEventLog>
+      <CrashDumps containerName="wad-crashdumps" dumpType="Mini">
+        <CrashDumpConfiguration processName="WaIISHost.exe"/>
+        <CrashDumpConfiguration processName="WaWorkerHost.exe"/>
+        <CrashDumpConfiguration processName="w3wp.exe"/>
+      </CrashDumps>
+      <PerformanceCounters scheduledTransferPeriod="PT1M">
+        <PerformanceCounterConfiguration counterSpecifier="\Processor(_Total)\% Processor Time" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Processor(_Total)\% User Time" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\System\Processor Queue Length" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Memory\Available MBytes" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Memory\Committed Bytes" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Network Interface(*)\Bytes Received/sec" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Network Interface(*)\Bytes Sent/sec" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Exceptions(_Global_)\# Exceps Thrown / sec" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Memory(_Global_)\% Time in GC" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\ASP.NET Applications(__Total__)\Requests/Sec" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\ASP.NET Applications(__Total__)\Errors Total/Sec" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\ASP.NET Applications(__Total__)\Requests Total" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\ASP.NET\Requests Queued" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\ASP.NET\Requests Rejected" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\ASP.NET\Application Restarts" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\ASP.NET\Request Execution Time" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\ASP.NET\Requests Disconnected" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\ASP.NET\Worker Process Restarts" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\TCPv4\Connection Failures" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\TCPv4\Connections Established" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\TCPv4\Connections Reset" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\TCPv4\Segments Sent/sec" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Process(w3wp)\% Processor Time" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Process(w3wp)\Private Bytes" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Process(w3wp)\Thread Count" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Process(WaWorkerHost)\% Processor Time" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Process(WaWorkerHost)\Private Bytes" sampleRate="PT15S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Process(WaWorkerHost)\Thread Count" sampleRate="PT15S" /> 
+      </PerformanceCounters>
+    </DiagnosticMonitorConfiguration>
+  </WadCfg>
+  <StorageAccount>pemsdct</StorageAccount>
+</PublicConfig>

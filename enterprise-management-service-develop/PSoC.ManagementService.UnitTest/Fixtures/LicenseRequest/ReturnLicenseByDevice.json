@@ -1,0 +1,79 @@
+﻿{
+  "deviceId": "7719C16C-11A2-48E6-A5A3-C6F671943A52",
+  "wifiBSSID": "ee:ff:e9:81:0b:00",
+  "downloadLicenseRequested": false,
+  "learningContentQueued": 1,
+  "environmentId": "configcode",  
+  "deviceName": "iPad Simulator 7",    
+  "userId": "119CCC4E-EDB6-43C9-9DBE-E46CDB845FAE",
+  "locationId": "d622a7c1-d3b6-4236-9349-474ce92f2232",  
+  "locationName": "Alliance Collins Family College-Ready High School",  
+  "username": "Johnny",  
+  "userType": "student",  
+  "contentLastUpdatedAt": 0,  
+  "configuredGrades": [],
+  "configuredUnitCount": 0,
+  "appId": "com.pearson.commoncore.commoncore",
+  "deviceOSVersion": "7.1",
+  "contentSize": 10,
+  "wifiSSID": "epic",  
+  "appVersion": "1.5.0",
+  "freeSpaceSize": 158157721600,
+  "coursesInstalled": [
+    {
+      "Subject": "ELA",
+      "Grade": "10",
+      "Percent": 0,
+      "LearningResourceId": "0737c4b6-40f2-4c0e-b223-4977b03f9ae7"
+    },
+    {
+      "Subject": "ELA",
+      "Grade": "11",
+      "Percent": 0,
+      "LearningResourceId": "aa26af81-40f2-43ad-9683-d0f13890f057"
+    },
+    {
+      "Subject": "Math",
+      "Grade": "11",
+      "Percent": 0,
+      "LearningResourceId": "00ada5dd-40f2-4713-9266-319591b76d6a"
+    },
+    {
+      "Subject": "ELA",
+      "Grade": "6",
+      "Percent": 0,
+      "LearningResourceId": "0aac764c-40f2-4d28-a4f3-2b9953b760d2"
+    },
+    {
+      "Subject": "Math",
+      "Grade": "6",
+      "Percent": 0,
+      "LearningResourceId": "f84ecdfa-40f2-4854-bdb9-a0ee8bcda8cf"
+    },
+    {
+      "Subject": "ELA",
+      "Grade": "8",
+      "Percent": 0,
+      "LearningResourceId": "f54fce7b-40f2-4bf1-9c04-858fbaac5ccf"
+    },
+    {
+      "Subject": "Math",
+      "Grade": "8",
+      "Percent": 0,
+      "LearningResourceId": "33236cc6-40f2-4157-9faf-4aa38d795130"
+    },
+    {
+      "Subject": "ELA",
+      "Grade": "9",
+      "Percent": 0,
+      "LearningResourceId": "104ed877-40f2-41bb-8394-5364e849c6ec"
+    },
+    {
+      "Subject": "Math",
+      "Grade": "9",
+      "Percent": 0,
+      "LearningResourceId": "ff18e8cf-40f2-4450-a233-4cdb5b15d981"
+    }
+  ],
+  "deviceType": "iPad Simulator"
+}
