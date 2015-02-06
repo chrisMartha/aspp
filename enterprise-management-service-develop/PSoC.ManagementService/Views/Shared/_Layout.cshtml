@@ -6,44 +6,131 @@
     <title>PSoC EMS @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Content/css/style.css" rel="stylesheet" />
     <!--[if IE]>
-	    <link rel="stylesheet" type="text/css" href="~/Content/ie.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/ie.css" />
     <![endif]-->
     @RenderSection("styles", required: false)
 </head>
 <body id="@(ViewBag.BodyClass)">
+    <div id="div_id_wrapper">
+        <!-- Main wrapper division -->
 
-    <div class="navbar" role="navigation">
-        <div class="logoContainer">
-            <span id="logo"></span><p class="navbar-text">Pearson Enterprise Management</p>
+        <div id="div_id_header">
+            <!-- header section -->
+
+            <a href="@Url.Action("Index", "Home")">
+                <span id="div_id_logo"></span><p id="pem" >Pearson <br />Enterprise <br /> Management</p>
+            </a><!-- /logo -->
+            @if (ViewBag.IsAuthenticated != null && ViewBag.IsAuthenticated)
+            {
+                <div id="div_id_controlbar">
+                    <!-- controls -->
+
+                    <div id="div_id_controls">
+                        <!-- controls -->
+                        @if (User.IsInRole("GlobalAdmin"))
+                        {
+                            <a id="btn_id_adminIndex" class="controlBtn" href="@Url.Action("Index", "Admins")">Admins</a>
+                        }
+                        @*<div id="btn_id_adminIndex" class="controlBtn">Admin Index</div>*@
+                        <div id="btn_id_settings" class="controlBtn" onclick="toggleVisibilityauto('div_id_popupSettings');">
+                            <img src="~/Content/images/index_control_settings.png" alt="settings icon gear" />
+                        </div>
+
+
+                        <a id="btn_id_Logout" class="controlBtn" onclick="toggleVisibility('div_id_popupConfirmation','on')">logout</a>
+                    </div>
+
+                    <div id="div_id_username">@ViewBag.Username</div><!-- username -->
+
+                    <div id="div_id_popupSettings">
+                        <div id="div_id_triangle"></div>
+                        @if ((User.IsInRole("GlobalAdmin")) || (User.IsInRole("DistrictAdmin")))
+                        {
+                            <a id="popupset_district" class="cls_popupsettingsbtn" href="@Url.Action("district", "settings")">District Settings</a>
+                        }
+                        else
+                        {  <div id="popupset_district" class="cls_popupsettingsbtn">&nbsp;</div>
+                        }
+
+                        @if ((User.IsInRole("GlobalAdmin")) || (User.IsInRole("DistrictAdmin")) || (User.IsInRole("SchoolAdmin")))
+                        {
+                            <a id="popupset_ap" class="cls_popupsettingsbtn" href="@Url.Action("accesspoint", "settings")">Access Point Settings</a>
+                        }
+                        else
+                        {
+                            <div id="popupset_ap" class="cls_popupsettingsbtn">&nbsp;</div>
+                        }
+
+                    </div>
+                </div><!--/ controls -->
+            }
+
+
         </div>
-        @if (ViewBag.IsAuthenticated != null && ViewBag.IsAuthenticated)
-        {
-            <div class="pull-right" id="utilityOptions">
-                @if (User.IsInRole("GlobalAdmin"))
-                {
-                    <a class="btn btn-primary" href="@Url.Action("Index", "Admins")">Admins</a>
-                }
-                @if ((User.IsInRole("GlobalAdmin")) || (User.IsInRole("DistrictAdmin")))
-                {
-                    <a class="btn btn-primary" href="@Url.Action("district", "settings")">District Settings</a>
-                }
-                @if ((User.IsInRole("GlobalAdmin")) || (User.IsInRole("DistrictAdmin")) || (User.IsInRole("SchoolAdmin")))
-                {
-                    <a class="btn btn-primary" href="@Url.Action("accesspoint", "settings")">Access Point Settings</a>
-                }
-                <span id="username">@ViewBag.Username</span>
-                <a id="logoutLink" href="@Url.Action("Logout", "Account")">
-                    Logout
-                </a>
-            </div>
-        }
+
+        <div id="div_id_information">
+            <!-- Information section -->
+            <div id="div_id_popupConfirmation">
+                <!-- Popup Confirmations -->
+                <div id="popup_title"> Logged Out</div>
+                <div id="popup_msg">Are you sure you'd like to logout</div>
+                <div id="div_id_popupbtn">
+                    <a id="popup_yes" class="cls_popupbtn" href="@Url.Action("Logout", "Account")">YES</a>
+                    @*<div id="popup_yes" class="cls_popupbtn" onclick="">YES</div>*@
+                    <a id="popup_no" class="cls_popupbtn" onclick="toggleVisibility('div_id_popupConfirmation','off')">NO</a>
+                </div>
+            </div><!-- /popupConfirmations -->
+            @RenderBody()
+
+        </div><!-- /InformationSection -->
+
     </div>
-    @RenderBody()
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+
+        //Common Js File - axawebs.com
+
+        //automatic visibility toggle
+        function toggleVisibilityauto(passedElementId) {
+            // access passed element
+            var e = document.getElementById(passedElementId);
+
+            if (e.style.display == "block") {
+                e.style.display = 'none';
+            } else if (e.style.display == "none") {
+                e.style.display = 'block';
+            } else {
+                e.style.display = "block";
+            }
+
+        }
+
+        // Toggle visibility ON or OFF
+        function toggleVisibility(passedElementId, togglevalue) {
+
+            // access passed element
+            var e = document.getElementById(passedElementId);
+
+            // read visibility status
+            //assign inverse visibility status
+            if (togglevalue == 'on') {
+                e.style.display = 'block';
+            } else if (togglevalue == 'off') {
+                e.style.display = 'none';
+            } else {
+                e.style.display = 'block';
+            }
+
+        }
+
+
+    </script>
 </body>
 </html>
