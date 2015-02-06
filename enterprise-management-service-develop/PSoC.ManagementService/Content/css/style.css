@@ -1,0 +1,383 @@
+/*  AXA WEB SOLUTIONS (AXAWEBS.COM)
+    CSS FILE
+/
+/
+/
+/-------- Body Section
+*/
+
+
+/*------- COMMON CSS */
+
+
+
+/*------- Wrapper Division*/
+#div_id_wrapper {
+    position: absolute;
+    margin: 0px;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    font-family: trebuchet ms,tahoma,sans-serif;
+}
+
+/*------- Canvas Division */
+#div_id_canvas {
+    position: relative;
+    top: 50px;
+    margin: 0 auto;
+    min-width: 850px !important;
+    width: 95%;
+    background-color: white;
+    border: solid 2px #ccc;
+}
+/*
+/
+/
+/
+/---------------
+Header Section
+--------------*/
+#div_id_header {
+    /*position: relative;
+    top: 0px;
+    height: 110px;
+    width: 1005;*/
+    background-color: #fafdfd;
+    box-shadow: 2px 2px 14px rgba(25, 128, 152, 0.3);
+    height: 88px;
+    margin-bottom: 0;
+}
+/*LOGO*/
+
+/* Pearson
+       System of Courses 
+    */
+#div_id_logo {
+    /*position: absolute;
+        top: 15px;
+        left: 20px;
+        width: 420px;
+        height: 50px;
+        font-family: trebuchet ms, calibri, arial, tahoma;
+        font-size: 11pt;
+        letter-spacing: 2px;*/
+    background-image: url("../images/logo.png");
+    clear: left;
+    display: inline-block;
+    float: left;
+    height: 64px;
+    margin-left: 80px;
+    margin-top: 10px;
+    width: 185px;
+}
+
+
+#pearson {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    text-align: right;
+    color: #71B69F;
+}
+
+#systemoc {
+    color: black;
+}
+
+/*
+            Stripes
+        */
+#logostripes {
+    position: absolute;
+    left: 180px;
+    top: 10px;
+    height: 80px;
+    width: 80px;
+}
+
+#vertical1, #vertical2, #vertical3, #vertical4, #vertical5 {
+    position: relative;
+    float: left;
+    height: 40px;
+    width: 5px;
+    background-color: black;
+    margin-left: 5px;
+    z-index: 101;
+    border-radius: 2px;
+}
+
+#vertical1 {
+    margin-top: 20px;
+    height: 35px;
+    width: 5px;
+    background-color: #92B876;
+}
+
+#vertical2 {
+    margin-top: 0px;
+    height: 47px;
+    width: 7px;
+    background-color: #66AD60;
+}
+
+#vertical3 {
+    margin-top: -7px;
+    height: 59px;
+    width: 9px;
+    background-color: #55AA5C;
+}
+
+#vertical4 {
+    margin-top: 10px;
+    height: 65px;
+    width: 12px;
+    background-color: #54A763;
+}
+
+#vertical5 {
+    margin-top: -15px;
+    height: 83px;
+    width: 15px;
+    background-color: #479161;
+}
+
+#horizontal {
+    position: absolute;
+    top: 30px;
+    left: 5px;
+    background-color: #496;
+    width: 60px;
+    height: 5px;
+    z-index: 100;
+}
+
+/*
+                Pearson
+                Enterprise
+                Management
+            */
+#pem {
+    position: relative;
+    top: 5px;
+    right: 0px;
+    font-size: 13pt;
+    line-height: 16pt;
+    font-family: trebuchet ms;
+    color: #7ABCBE;
+}
+
+/* Controls */
+#div_id_controlbar {
+    position: absolute;
+    width: 350px;
+    top: 55px;
+    right: 5px;
+    font-family: trebuchet ms;
+    font-size: 12pt;
+    color: #999;
+}
+
+    #div_id_controlbar a {
+        color: inherit;
+    }
+
+#div_id_controls { /*-------- Admin Index, Settings, logout*/
+    position: relative;
+    float: right;
+    top: 0px;
+    right: 0px;
+    height: 26px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    border: solid 1px #444;
+    overflow: hidden;
+}
+
+
+#div_id_username { /*------------ Username */
+    position: relative;
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    text-align: right;
+    width: 130px;
+    overflow: hidden;
+}
+
+.controlBtn {
+    position: relative;
+    top: -8px;
+    padding: 5px;
+    padding-top: 0px;
+    float: left;
+    cursor: pointer;
+    height: 20px;
+}
+
+#btn_id_adminIndex {
+    padding-top: 10px;
+    left: 0px;
+    box-sizing: initial;
+}
+
+#btn_id_settings {
+    border-left: solid 1px #666;
+    border-right: solid 1px #666;
+    top: 0px;
+    padding-top: 0px;
+    height: 100%;
+}
+
+    #btn_id_settings img {
+        width: 23px;
+        opacity: .3;
+    }
+
+#btn_id_Logout {
+    padding-top: 10px;
+    width: 52px;
+    box-sizing: initial;
+}
+
+.controlBtn:hover {
+    background-color: #ccc;
+}
+
+#div_id_popupSettings { /*-------- Popup settings -- hidden on page load*/
+    position: absolute;
+    top: 27px;
+    right: 8px;
+    width: 152px;
+    height: 100px;
+    background-image: url("../images/settings_popup.png");
+    background-repeat: no-repeat;
+    z-index: 9998;
+    font-size: 11pt;
+    text-align: center;
+    color: #666;
+    display: none;
+}
+
+.cls_popupsettingsbtn {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+    .cls_popupsettingsbtn:hover {
+        color: #ccc;
+    }
+
+#popupset_district {
+    margin-top: 15px;
+}
+
+/*------------------
+    Popup confim - Hidden at page load
+-------------------*/
+#div_id_popupConfirmation {
+    position: relative;
+    top: 40px;
+    margin: 0 auto;
+    z-index: 9999;
+    width: 500px;
+    height: 160px;
+    background-color: white;
+    border: solid 1px #666;
+    font-family: trebuchet ms, tahoma;
+    font-size: 15pt;
+    color: #666;
+    border-radius: 4px;
+    display: none;
+}
+
+#popup_title {
+    position: absolute;
+    top: 0px;
+    width: 475px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    border-bottom: solid 1px #666;
+}
+
+#popup_msg {
+    position: relative;
+    margin-top: 70px;
+    padding-left: 25px;
+}
+
+.cls_popupbtn {
+    position: relative;
+    padding: 2px;
+    width: 50px;
+    text-align: center;
+    top: 20px;
+    border: solid 1px #666;
+    border-radius: 4px;
+    font-size: 12pt;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    float: left;
+    margin-left: 5px;
+}
+
+#div_id_popupbtn {
+    position: relative;
+    width: 130px;
+    margin: 0 auto;
+}
+
+.cls_popupbtn:hover {
+    background-color: #ccc;
+}
+/*-----------------
+Information Section
+-----------------*/
+#div_id_information {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    /*background-color: #ccc;*/
+}
+
+#div_id_infoWrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9997;
+}
+
+#div_id_info {
+    position: relative;
+    margin: 0 auto;
+    width: 830px;
+    background-color: white;
+    height: 95%;
+    top: 10px;
+}
+
+/* TITLE */
+.info_titlesection {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 70px;
+    border-bottom: solid 2px #ccc;
+}
+
+.info_title {
+    position: absolute;
+    width: 200px;
+    font-size: 16pt;
+    color: #777;
+    padding: 24px;
+}
