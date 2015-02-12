@@ -159,13 +159,21 @@ Header Section
                 Management
             */
 #pem {
-    position: relative;
+    /*position: relative;
     top: 5px;
     right: 0px;
     font-size: 13pt;
     line-height: 16pt;
     font-family: trebuchet ms;
-    color: #7ABCBE;
+    color: #7ABCBE;*/
+    color: #7abcbe;
+    font-family: trebuchet ms;
+    font-size: 12pt;
+    left: 10px;
+    line-height: 13pt;
+    position: relative;
+    right: 0;
+    top: 12px;
 }
 
 /* Controls */
@@ -194,6 +202,8 @@ Header Section
     border: solid 1px #444;
     overflow: hidden;
 }
+    #div_id_controls a {
+    text-decoration:none;}
 
 
 #div_id_username { /*------------ Username */
@@ -214,12 +224,13 @@ Header Section
     float: left;
     cursor: pointer;
     height: 20px;
+
 }
 
 #btn_id_adminIndex {
     padding-top: 10px;
     left: 0px;
-    box-sizing: initial;
+    box-sizing: content-box;
 }
 
 #btn_id_settings {
@@ -238,7 +249,7 @@ Header Section
 #btn_id_Logout {
     padding-top: 10px;
     width: 52px;
-    box-sizing: initial;
+    box-sizing: content-box;
 }
 
 .controlBtn:hover {
@@ -381,3 +392,34 @@ Information Section
     color: #777;
     padding: 24px;
 }
+
+/* Information division */
+        .info_createnew{
+            position: absolute;
+            top: 20px;
+            right: 15px;
+            height: 25px;
+            width: 140px;
+            background-color: #f2f2f2;
+            border: solid 1px #444;
+            border-radius: 5px;
+            padding-top: -3px;
+            line-height: 15pt;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .info_createnew:hover{
+            background-color: #ccc;
+        }
+            .info_createnew b{
+                position: relative; 
+                font-size: 20pt; 
+                padding: 0px;
+                padding-left: 8px;
+                padding-right: 8px;
+                border-right: solid 1px #444;
+                top: 3px; 
+                font-weight: 100;
+                margin-right: 10px;
+            }
+

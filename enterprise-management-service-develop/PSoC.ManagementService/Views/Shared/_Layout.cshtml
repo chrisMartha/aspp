@@ -7,6 +7,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/popup/css/demo.css" rel="stylesheet" />
+    <link href="~/Content/popup/css/confirm.css" rel="stylesheet" />
     <!--[if IE]>
         <link rel="stylesheet" type="text/css" href="~/Content/ie.css" />
     <![endif]-->
@@ -19,8 +21,8 @@
         <div id="div_id_header">
             <!-- header section -->
 
-            <a href="@Url.Action("Index", "Home")">
-                <span id="div_id_logo"></span><p id="pem" >Pearson <br />Enterprise <br /> Management</p>
+            <a style="text-decoration : none" href="@Url.Action("Index", "Home")" >
+                <span id="div_id_logo"></span><p id="pem">Pearson <br />Enterprise <br /> Management</p>
             </a><!-- /logo -->
             @if (ViewBag.IsAuthenticated != null && ViewBag.IsAuthenticated)
             {
@@ -39,7 +41,8 @@
                         </div>
 
 
-                        <a id="btn_id_Logout" class="controlBtn" onclick="toggleVisibility('div_id_popupConfirmation','on')">logout</a>
+                        <a id="btn_id_Logout" class="controlBtn" >logout</a>
+                        @*<a id="btn_id_Logout" class="controlBtn" onclick="toggleVisibility('div_id_popupConfirmation','on')">logout</a>*@
                     </div>
 
                     <div id="div_id_username">@ViewBag.Username</div><!-- username -->
@@ -79,12 +82,15 @@
                 <div id="div_id_popupbtn">
                     <a id="popup_yes" class="cls_popupbtn" href="@Url.Action("Logout", "Account")">YES</a>
                     @*<div id="popup_yes" class="cls_popupbtn" onclick="">YES</div>*@
-                    <a id="popup_no" class="cls_popupbtn" onclick="toggleVisibility('div_id_popupConfirmation','off')">NO</a>
+                    <a id="popup_no" class="cls_popupbtn">NO</a>
+                    <!--<a id="popup_no" class="cls_popupbtn" onclick="toggleVisibility('div_id_popupConfirmation','off')">NO</a>-->
                 </div>
             </div><!-- /popupConfirmations -->
             @RenderBody()
 
         </div><!-- /InformationSection -->
+
+       
 
     </div>
 
@@ -132,5 +138,8 @@
 
 
     </script>
+    <script src="~/Content/popup/js/jquery.simplemodal.js"></script>
+    <script src="~/Content/popup/js/confirm.js"></script>
+
 </body>
 </html>
