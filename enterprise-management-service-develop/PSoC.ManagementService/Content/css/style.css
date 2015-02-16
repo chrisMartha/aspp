@@ -202,8 +202,10 @@ Header Section
     border: solid 1px #444;
     overflow: hidden;
 }
+
     #div_id_controls a {
-    text-decoration:none;}
+        text-decoration: none;
+    }
 
 
 #div_id_username { /*------------ Username */
@@ -224,7 +226,6 @@ Header Section
     float: left;
     cursor: pointer;
     height: 20px;
-
 }
 
 #btn_id_adminIndex {
@@ -371,7 +372,7 @@ Information Section
     margin: 0 auto;
     width: 830px;
     background-color: white;
-    height: 95%;
+    height: 99%;
     top: 10px;
 }
 
@@ -385,41 +386,265 @@ Information Section
     border-bottom: solid 2px #ccc;
 }
 
+info_titlesection.a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .info_title {
     position: absolute;
-    width: 200px;
+    width: 250px;
     font-size: 16pt;
     color: #777;
     padding: 24px;
 }
 
 /* Information division */
-        .info_createnew{
-            position: absolute;
-            top: 20px;
-            right: 15px;
-            height: 25px;
-            width: 140px;
-            background-color: #f2f2f2;
-            border: solid 1px #444;
-            border-radius: 5px;
-            padding-top: -3px;
-            line-height: 15pt;
-            cursor: pointer;
-            overflow: hidden;
-        }
-        .info_createnew:hover{
-            background-color: #ccc;
-        }
-            .info_createnew b{
-                position: relative; 
-                font-size: 20pt; 
-                padding: 0px;
-                padding-left: 8px;
-                padding-right: 8px;
-                border-right: solid 1px #444;
-                top: 3px; 
-                font-weight: 100;
-                margin-right: 10px;
-            }
+.info_createnew {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    height: 25px;
+    width: 140px;
+    background-color: #f2f2f2;
+    border: solid 1px #444;
+    border-radius: 5px;
+    padding-top: -3px;
+    line-height: 15pt;
+    cursor: pointer;
+    overflow: hidden;
+}
 
+    .info_createnew:hover {
+        background-color: #ccc;
+    }
+
+    .info_createnew b {
+        position: relative;
+        font-size: 20pt;
+        padding: 0px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border-right: solid 1px #444;
+        top: 3px;
+        font-weight: 100;
+        margin-right: 10px;
+    }
+
+/*Datasection*/
+.info_dataSection {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 70px;
+    height: 310px;
+    overflow-y: scroll;
+    color: #ccc;
+    font-size: 11pt;
+}
+
+#head_backbox {
+    position: absolute;
+    width: 100%;
+    height: 38px;
+    top: 0px;
+    border: solid 2px #ccc;
+}
+
+.tr_table_data {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 0px;
+}
+
+    .tr_table_data .td, .tr_table_data .th {
+        margin-left: 5px;
+        font-size: 9pt !important;
+    }
+
+.tr_head {
+    position: relative;
+    height: 40px;
+}
+
+/*td buttons*/
+.td_btnedit, .td_btndetails, .td_btndel {
+    position: relative;
+    float: left;
+    width: 50px;
+    padding: 2px;
+    margin: 2px;
+    font-size: 10pt;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #f2f2f2;
+    color: #444;
+    box-shadow: 0px 0px 2px #111;
+    cursor: pointer;
+}
+
+    .td_btnedit:hover, .td_btndetails:hover, .td_btndel:hover {
+        background-color: #ccc;
+    }
+
+.td_btndel {
+    background-color: red;
+    color: white;
+}
+
+/*Admin Create New Style*/
+.info_backtolist {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    padding: 1px;
+    width: 100px;
+    text-align: center;
+    background-color: #f2f2f2;
+    border: solid 1px #444;
+    border-radius: 5px;
+    line-height: 18pt;
+    cursor: pointer;
+    color: #444;
+    font-size: 11pt;
+}
+
+    .info_backtolist:hover {
+        background-color: #ccc;
+    }
+
+/*Form Css*/
+#form_id_newAdmin {
+    position: absolute;
+    top: 70px;
+    width: 500px;
+    letter-spacing: 1px;
+    font-family: tahoma;
+    font-size: 11pt;
+}
+
+.div_input {
+    position: relative;
+    float: left;
+    width: 500px;
+    margin: 18px;
+}
+
+.formlabel {
+    position: absolute;
+    left: 0px;
+    width: 170px;
+    text-align: right;
+    padding-left: 20px;
+    font-weight: normal;
+}
+.formlabel1 {
+    position: absolute;
+    left: 0px;
+    width: 170px;
+    text-align: right!important;
+    padding-left: 20px;
+    font-weight: normal;
+}
+
+
+.txt {
+    position: absolute;
+    left: 210px;
+    width: 200px;
+    padding: 5px;
+    text-align: left;
+    border: solid 2px #ccc;
+    font-size: 10pt;
+    color: #666;
+    line-height: normal;
+}
+
+#radios .txt {
+    border: none;
+    text-align: left;
+}
+
+#radios input {
+    position: relative;
+    border: solid 1px #777;
+    width: 20px;
+    left: -5px;
+    text-align: left;
+}
+#radios label {
+    border: none;
+    text-align: left;
+}
+#radios .rbtnDropdown {
+margin:5px;
+}
+
+select {
+    position: absolute;
+    right: 0px;
+    width: 150px;
+    border: solid 1px #ccc;
+    height: 25px;
+    text-align: center !important;
+}
+
+.checkbox1{
+  display: block;
+    margin-bottom: -30px;
+    margin-left: 220px;
+    margin-top: 0px;
+    position: relative;
+    }
+
+#active {
+    position: absolute;
+    top: 0px;
+    width: 40px;
+    border-radius: 100px;
+    padding: 0px;
+    background-color: #0c5;
+    color: white;
+    padding-left: 20px;
+}
+
+    #active input {
+        position: absolute;
+        top: -1px;
+        left: 2px;
+    }
+
+#frm_controls {
+    position: absolute;
+    width: 200px;
+    bottom: -80px;
+    left: 200px;
+}
+
+    #frm_controls * {
+        position: relative;
+        float: left;
+    }
+
+    #frm_controls div {
+        text-decoration: underline;
+        cursor: pointer;
+        padding-right: 20px;
+    }
+
+    #frm_controls button {
+        border: solid 1px #444;
+        height: 28px;
+        font-size: 11pt;
+        color: #fff;
+    }
+
+.text-danger {
+    color: #a94442;
+    display: inline-block;
+    margin-left: 230px;
+    margin-top: 10px;
+}
